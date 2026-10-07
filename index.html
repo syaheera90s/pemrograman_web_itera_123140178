@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini POS - Kasir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 p-6 text-gray-800">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Form Input Barang -->
+        <div class="bg-white p-5 rounded-lg shadow-md col-span-1 h-fit">
+            <h2 class="text-xl font-bold mb-4 border-b pb-2">Tambah Barang</h2>
+            <form id="form-barang" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold">Nama Barang</label>
+                    <input type="text" id="nama-barang" class="w-full border p-2 rounded" placeholder="Buku Tulis">
+                    <p id="error-nama" class="text-red-500 text-xs mt-1 hidden">Minimal 3 karakter!</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold">Harga Satuan (Rp)</label>
+                    <input type="number" id="harga-barang" class="w-full border p-2 rounded" placeholder="5000">
+                    <p id="error-harga" class="text-red-500 text-xs mt-1 hidden">Minimal Rp 500!</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold">Jumlah / Qty</label>
+                    <input type="number" id="qty-barang" class="w-full border p-2 rounded" placeholder="1">
+                    <p id="error-qty" class="text-red-500 text-xs mt-1 hidden">Minimal qty 1!</p>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 rounded hover:bg-blue-700">
+                    Masukkan Keranjang
+                </button>
+            </form>
+        </div>
+
+        <!-- Keranjang Belanja & Kalkulator -->
+        <div class="bg-white p-5 rounded-lg shadow-md col-span-2">
+            <div class="flex justify-between items-center mb-4 border-b pb-2">
+                <h2 class="text-xl font-bold">Keranjang Belanja</h2>
+                <button id="btn-reset" class="bg-red-500 text-white px-3 py-1 text-sm rounded hover:bg-red-600">Transaksi Baru</button>
+            </div>
+            
+            <div class="overflow-x-auto mb-4">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="p-2 border">No</th>
+                            <th class="p-2 border">Nama Barang</th>
+                            <th class="p-2 border">Harga</th>
+                            <th class="p-2 border">Qty</th>
+                            <th class="p-2 border">Subtotal</th>
+                            <th class="p-2 border">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabel-keranjang">
+                        <!-- Data keranjang akan di-render melalui JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Area Perhitungan & Pembayaran -->
+            <div class="bg-gray-50 p-4 rounded border">
+                <div class="flex justify-between mb-2">
+                    <span>Total Belanja:</span>
+                    <span id="total-belanja" class="font-bold">Rp 0</span>
+                </div>
+                <div class="flex justify-between mb-2 text-green-600">
+                    <span>Diskon (Total >= 50rb):</span>
+                    <span id="nominal-diskon">- Rp 0</span>
+                </div>
+                <div class="flex justify-between mb-4 text-lg font-bold border-t pt-2">
+                    <span>Total Akhir:</span>
+                    <span id="total-akhir">Rp 0</span>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 items-end">
+                    <div class="flex-1 w-full">
+                        <label class="block text-sm font-semibold">Uang Bayar (Rp)</label>
+                        <input type="number" id="uang-bayar" class="w-full border p-2 rounded" placeholder="Ketik nominal bayar...">
+                        <p id="pesan-uang" class="text-red-500 text-xs mt-1 hidden">Uang tidak cukup!</p>
+                    </div>
+                    <div class="flex-1 w-full p-2 bg-blue-100 rounded text-center h-full">
+                        <span class="block text-sm">Kembalian:</span>
+                        <span id="uang-kembali" class="text-xl font-bold text-blue-800">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
